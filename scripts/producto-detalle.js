@@ -66,7 +66,7 @@ function renderizarProducto(producto) {
                         </div>
                     </div>
                     
-                    <button class="btn-agregar-carrito" onclick="agregarAlCarrito(${producto.id})">
+                    <button class="btn-agregar-carrito" onclick="addToCart(${JSON.stringify(producto).replace(/"/g, '&quot;')})">
                         <i class="fas fa-shopping-bag"></i> Añadir al carrito
                     </button>
                     
@@ -95,10 +95,82 @@ function seleccionarColor(boton) {
     boton.classList.add('selected');
 }
 
-function agregarAlCarrito(productoId) {
-    // Aquí implementarías la lógica para agregar al carrito
-    alert(`Producto ${productoId} añadido al carrito`);
-    // Redirigir al carrito o mostrar notificación
+// Función para añadir al carrito
+function addToCart(producto) {
+    try {
+        // Convertir el string de producto a objeto si es necesario
+        if (typeof producto === 'string') {
+            producto = JSON.parse(producto);
+        }
+        
+        // Obtener el carrito actual del localStorage
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        
+        // Verificar si el producto ya está en el carrito
+        const productoExistente = carrito.find(item => item.id === producto.id);
+        
+        if (productoExistente) {
+            // Si ya existe, aumentar la cantidad en 1
+            productoExistente.cantidad += 1;
+        } else {
+            // Si no existe, añadirlo al carrito con cantidad 1
+            carrito.push({
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                imagen: producto.imagen,
+                cantidad: 1
+            });
+        }
+        
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        
+        // Actualizar el contador del carrito
+        actualizarContadorCarrito();
+        
+        // Mostrar notificación
+        mostrarNotificacion('Producto añadido al carrito');
+    } catch (error) {
+        console.error('Error al añadir al carrito:', error);
+        mostrarNotificacion('Error al añadir el producto');
+    }
+}
+
+// Función para mostrar notificación
+function mostrarNotificacion(mensaje) {
+    const notificacion = document.createElement('div');
+    notificacion.className = 'notificacion';
+    notificacion.textContent = mensaje;
+    document.body.appendChild(notificacion);
+    
+    // Animar la notificación
+    setTimeout(() => {
+        notificacion.classList.add('mostrar');
+    }, 100);
+    
+    // Eliminar la notificación después de 3 segundos
+    setTimeout(() => {
+        notificacion.classList.remove('mostrar');
+        setTimeout(() => {
+            notificacion.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Función para actualizar el contador del carrito
+function actualizarContadorCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+    
+    // Actualizar todos los contadores del carrito en la página
+    const contadores = document.querySelectorAll('.cart-count');
+    contadores.forEach(contador => {
+        contador.textContent = totalItems;
+        contador.style.display = totalItems > 0 ? 'flex' : 'none';
+    });
+    
+    console.log('Contador actualizado:', totalItems);
 }
 
 function getColorHex(colorName) {
