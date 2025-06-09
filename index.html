@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModaStyle - Tienda de Ropa Moderna</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Moda<span>Style</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <div class="nav-icons">
+                <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="carrito.html"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            <div class="search-overlay" id="search-overlay">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+                <button class="close-search" id="close-search"><i class="fas fa-times"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubre tu <span>estilo único</span> con nuestras colecciones</h1>
+            <p>Encuentra las últimas tendencias en moda para hombre y mujer. Calidad, estilo y comodidad en un solo lugar.</p>
+            <div class="hero-buttons">
+                <a href="catalogo.html" class="btn">Ver Colección</a>
+                <a href="contacto.html" class="btn btn-outline">Contacto</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modelo con ropa moderna" class="floating-img img-main">
+            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Modelo con ropa casual" class="floating-img img-back">
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="section-title">
+            <h2>Nuevas Llegadas</h2>
+            <p>Descubre nuestras últimas incorporaciones para esta temporada</p>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" alt="Camisa elegante" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Abrigos</span>
+                    <h3 class="card-title">Casaca elegante de cuero</h3>
+                    <p class="card-price">S/. 490.99</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://hmperu.vtexassets.com/unsafe/360x0/center/middle/https%3A%2F%2Fhmperu.vtexassets.com%2Farquivos%2Fids%2F5157098%2FCamisa-en-algodon-premium-Slim-Fit---Blanco---H-M-PE.jpg%3Fv%3D638803491575770000" alt="Vestido de verano" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Camisas</span>
+                    <h3 class="card-title">Camisa blanca de algodon premium</h3>
+                    <p class="card-price">S/. 99.99</p>
+                </div>
+            </div>
+            <div class="card">
+                
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Jeans modernos" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Polos</span>
+                    <h3 class="card-title">Polo de algodon</h3>
+                    <p class="card-price">S/. 89.99</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Testimonios-->
+    <section class="testimonials">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- Elementos originales -->
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente 1">
+                            <h4>Ana Pérez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡La mejor calidad que he encontrado!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Cliente 2">
+                            <h4>Alejandra Rodriguez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente 3">
+                            <h4>Angely Diaz</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Cliente 5">
+                            <h4>Alejandro Lopez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/46.jpg" alt="Cliente 4">
+                            <h4>Karina Rojo</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Cliente 6">
+                            <h4>Jhamir Añanca</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clones de los elementos -->
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente 1">
+                            <h4>Ana Pérez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡La mejor calidad que he encontrado!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Cliente 2">
+                            <h4>Alejandra Rodriguez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente 3">
+                            <h4>Angely Diaz</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Cliente 5">
+                            <h4>Alejandro Lopez</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/women/46.jpg" alt="Cliente 4">
+                            <h4>Karina Rojo</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card clone">
+                    <div class="inner-card">
+                        <div class="front">
+                            <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Cliente 6">
+                            <h4>Jhamir Añanca</h4>
+                        </div>
+                        <div class="back">
+                            <p>"¡Increíble atención y calidad premium!" ⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Únete a nuestro newsletter</h2>
+            <p>Recibe ofertas exclusivas y mantente al día con las últimas tendencias de moda.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>ModaStyle</h3>
+                <p>Tu destino para encontrar las últimas tendencias en moda con estilo y calidad incomparables.</p>
+                <div class="social-links">
+                    
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Envíos y Devoluciones</a></li>
+                    <li><a href="#">Guía de Tallas</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>Teléfono: +51 922 684 873</a></li>
+                    <li>Email: astro.hellowworld@gmail.com</a></li>
+                    <li>Dirección: Calle 123, Ica, Perú</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js" defer></script>
+    <script src="scripts/search.js" defer></script>
+    <script src="scripts/header-responsive.js" defer></script>
+</body>

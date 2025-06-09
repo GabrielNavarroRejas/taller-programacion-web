@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModaStyle - Catalogo</title>
+    <link rel="stylesheet" href="styles/catalogo.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+    .contenido-productos{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    .producto img{
+        width: 200px;
+        
+        object-fit: cover;
+        height: 300px;
+    }
+</style>
+
+<body class="con-sidebar">
+    
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Moda<span>Style</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <div class="nav-icons">
+                <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="carrito.html"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            <div class="search-overlay" id="search-overlay">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+                <button class="close-search" id="close-search"><i class="fas fa-times"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Filtros móviles modernos -->
+    <div class="filtros-moviles-container">
+        <div class="filtro-movil">
+            <select id="filtro-tipo-movil" onchange="filtrarPorTipo(this.value)">
+                <option value="Todos">Todos los tipos</option>
+                <option value="Polos">Polos</option>
+                <option value="Camisas">Camisas</option>
+                <option value="Poleras">Poleras</option>
+            </select>
+        </div>
+        
+        <div class="filtro-movil">
+            <select id="filtro-genero-movil" onchange="filtrarPorGenero(this.value)">
+                <option value="Todos">Todos los géneros</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+            </select>
+        </div>
+        
+        <div class="filtro-movil">
+            <select id="filtro-precio-movil" onchange="ordenarPrecio(this.value)">
+                <option value="ninguno">Ordenar por precio</option>
+                <option value="asc">Menor a mayor</option>
+                <option value="desc">Mayor a menor</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="catalogo-container">
+        <aside class="sidebar">
+            <div class="filtro filtro-tipo">
+                <h3><i class="fas fa-tshirt"></i> Tipo de prenda</h3>
+                <ul>
+                    <li><button onclick="filtrarPorTipo('Todos')"><i class="fas fa-star"></i> Todos</button></li>
+                    <li><button onclick="filtrarPorTipo('Polos')"><i class="fas fa-tshirt"></i> Polos</button></li>
+                    <li><button onclick="filtrarPorTipo('Camisas')"><i class="fas fa-shirt"></i> Camisas</button></li>
+                    <li><button onclick="filtrarPorTipo('Poleras')"><i class="fas fa-hoodie"></i> Poleras</button></li>
+                </ul>
+            </div>
+
+            <div class="filtro filtro-genero">
+                <h3><i class="fas fa-venus-mars"></i> Género</h3>
+                <ul>
+                    <li><button onclick="filtrarPorGenero('Todos')"><i class="fas fa-globe"></i> Todos</button></li>
+                    <li><button onclick="filtrarPorGenero('Hombre')"><i class="fas fa-mars"></i> Hombre</button></li>
+                    <li><button onclick="filtrarPorGenero('Mujer')"><i class="fas fa-venus"></i> Mujer</button></li>
+                </ul>
+            </div>
+
+            <div class="filtro filtro-precio">
+                <h3><i class="fas fa-sort-amount-down"></i> Ordenar por precio</h3>
+                <ul>
+                    <li><button onclick="ordenarPrecio('ninguno')"><i class="fas fa-bars"></i> Ninguno</button></li>
+                    <li><button onclick="ordenarPrecio('asc')"><i class="fas fa-sort-amount-down-alt"></i> Menor a mayor</button></li>
+                    <li><button onclick="ordenarPrecio('desc')"><i class="fas fa-sort-amount-down"></i> Mayor a menor</button></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main id="contenedor-productos" class="contenido-productos">
+            <!-- Productos se cargarán dinámicamente -->
+        </main>
+    </div>
+    
+    <!-- Botón para mostrar/ocultar filtros en móviles -->
+    <div class="toggle-sidebar">
+        <i class="fas fa-filter"></i>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>ModaStyle</h3>
+                <p>Tu destino para encontrar las últimas tendencias en moda con estilo y calidad incomparables.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Envíos y Devoluciones</a></li>
+                    <li><a href="#">Guía de Tallas</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>Teléfono: +51 922 684 873</li>
+                    <li>Email: astro.hellowworld@gmail.com</li>
+                    <li>Dirección: Calle 123, Ica, Perú</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <script src="scripts/catalogo.js" defer></script>
+    <script src="scripts/search.js" defer></script>
+    <script src="scripts/header-responsive.js" defer></script>
+    
+     
+</body>
+
+</html>

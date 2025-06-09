@@ -1,0 +1,104 @@
+[
+    {
+        "id": 1,
+        "nombre": "Polo Básico Blanco",
+        "descripcion": "Polo de algodón suave, ideal para el día a día. Fabricado con materiales 100% algodón para máxima comodidad.",
+        "precio": 39.90,
+        "imagen": "img/polo-blanco.jpg",
+        "imagenes": [
+            "img/polo-blanco.jpg",
+            "img/polo-blanco-2.webp",
+            "img/polo-blanco-3.jpg"
+        ],
+        "tipo": "Polos",
+        "genero": "Hombre",
+        "colores": [
+            "Blanco"
+            
+        ],
+        "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "100% Algodón",
+        "stock": 15
+    },
+    {
+        "id": 2,
+        "nombre": "Camisa Clásica Celeste",
+        "descripcion": "Camisa formal para ocasiones especiales. Cuello clásico y mangas largas con puños abotonables.",
+        "precio": 79.90,
+        "imagen": "img/camisa-celeste.jpg",
+        "imagenes": [
+            "img/camisa-celeste.jpg",
+            "img/camisa-celeste-2.jpg"
+        ],
+        "tipo": "Camisas",
+        "genero": "Hombre",
+        "colores": [
+            "Celeste",
+            "Blanco",
+            "Azul marino"
+        ],
+        "tallas": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "Algodón 80% - Poliéster 20%",
+        "stock": 8
+    },
+    {
+        "id": 3,
+        "nombre": "Polera Oversize Mujer",
+        "descripcion": "Polera cómoda de estilo urbano. Diseño oversize para un look moderno y relajado.",
+        "precio": 99.90,
+        "imagen": "img/polera-mujer.jpg",
+        "imagenes": [
+            "img/polera-mujer.jpg",
+            "img/polera-mujer-2.jpg"
+        ],
+        "tipo": "Poleras",
+        "genero": "Mujer",
+        "colores": [
+            "Negro",
+            "Gris",
+            "Blanco"
+        ],
+        "tallas": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "material": "Algodón 100%",
+        "stock": 12
+    },
+    {
+        "id": 4,
+        "nombre": "Polo Tommy Hilfiger",
+        "descripcion": "Polo de alta calidad con logo bordado. Estilo clásico con un toque moderno.",
+        "precio": 99.90,
+        "imagen": "img/polo-tommy.webp",
+        "imagenes": [
+            "img/polo-tommy.webp",
+            "img/polo-tommy-2.webp"
+        ],
+        "tipo": "Polos",
+        "genero": "Hombre",
+        "colores": [
+            "Rojo",
+            "Azul",
+            "Blanco"
+        ],
+        "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "Algodón pima 100%",
+        "stock": 5
+    }
+]

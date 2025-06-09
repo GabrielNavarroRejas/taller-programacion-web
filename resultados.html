@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda - ModaStyle</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/resultados.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Moda<span>Style</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="#carrito">Carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <div class="nav-icons">
+                <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            <div class="search-overlay" id="search-overlay">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+                <button class="close-search" id="close-search"><i class="fas fa-times"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección de resultados -->
+    <section class="search-results-section">
+        <div class="container">
+            <h1 id="results-title">Resultados de búsqueda</h1>
+            <div class="results-grid" id="results-container">
+                <!-- Los resultados se cargarán aquí con JavaScript -->
+            </div>
+            <div class="no-results" id="no-results">
+                <i class="fas fa-search"></i>
+                <h2>No se encontraron resultados</h2>
+                <p>Intenta con otros términos de búsqueda</p>
+                <a href="catalogo.html" class="btn">Ver catálogo completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>ModaStyle</h3>
+                <p>Tu destino para encontrar las últimas tendencias en moda con estilo y calidad incomparables.</p>
+                <div class="social-links">
+                    
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Envíos y Devoluciones</a></li>
+                    <li><a href="#">Guía de Tallas</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>Teléfono: +51 922 684 873</a></li>
+                    <li>Email: astro.hellowworld@gmail.com</a></li>
+                    <li>Dirección: Calle 123, Ica, Perú</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/resultados.js" defer></script>
+    <script src="scripts/search.js" defer></script>
+    <script src="scripts/header-responsive.js" defer></script>
+</body>
+</html>
