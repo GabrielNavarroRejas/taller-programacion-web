@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://media.giphy.com/media/l0ExvS69hw7qWWqas/giphy.gif" alt="Web Development Animation" width="350"/>
+  <!--<img src="https://media.giphy.com/media/l0ExvS69hw7qWWqas/giphy.gif" alt="Web Development Animation" width="350"/>-->
 </p>
 
 <h1 align="center">✨ Taller de Programación Web: Proyecto Final ✨</h1>
@@ -32,13 +32,13 @@ Bienvenido al proyecto final del curso de **Taller de Programación Web**, donde
 
 ---
 
-### 🎬 **Demostración en Acción**
+<!--### 🎬 **Demostración en Acción**
 
 <p align="center">
   <img src="https://media.giphy.com/media/3o7TKz2b3wEwT5gX6M/giphy.gif" alt="Project Demo" width="600"/>
 </p>
 
----
+--->
 
 ### 🛠️ **Tecnologías que Dan Poder**
 
