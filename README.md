@@ -100,8 +100,8 @@ Este proyecto está protegido por la [Licencia MIT](LICENSE) – ¡siéntete lib
 
 ¿Listo para charlar sobre este proyecto o algo más? ¡Contáctame!
 
-- **Email**: [tu-email@example.com](mailto:tu-email@example.com)
-- **GitHub**: [tu-usuario](https://github.com/tu-usuario)
+- **Email**: [abdieljdp@gmail.com](mailto:abdieljdp@gmail.com)
+- **GitHub**: [Abdiel Diaz Palomino](https://github.com/AbdielDiazPalomino)
 
 <p align="center">
   <img src="https://media.giphy.com/media/26tPghhb310f8b0u4/giphy.gif" alt="Final Animation" width="350"/>
