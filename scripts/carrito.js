@@ -239,6 +239,7 @@ function actualizarContadorCarrito() {
     });
 }
 
+
 // Función para agregar producto al carrito
 function addToCart(producto) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -306,3 +307,69 @@ function updateCartCount() {
         cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
     }
 }
+
+function validarTelefono(telefono) {
+    // Eliminar espacios y guiones
+    const numero = telefono.replace(/\s+/g, '').replace(/-/g, '');
+    // Validar que sean 9 dígitos y empiece con 9
+    return /^9\d{8}$/.test(numero);
+}
+
+// Reemplazar el evento del botón de checkout
+document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+    const telefono = phoneInput.value.trim();
+    
+    // Validar teléfono
+    if (!telefono) {
+        phoneError.textContent = 'Por favor, ingresa tu número de teléfono.';
+        phoneError.style.display = 'block';
+        return;
+    }
+    
+    if (!validarTelefono(telefono)) {
+        phoneError.textContent = 'Por favor, ingresa un número válido de 9 dígitos que comience con 9.';
+        phoneError.style.display = 'block';
+        return;
+    }
+    
+    // Limpiar mensaje de error
+    phoneError.style.display = 'none';
+    
+    // Obtener carrito
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+    // Construir mensaje
+    let mensaje = '¡Hola! Quiero comprar los siguientes productos:%0A%0A';
+    carrito.forEach(item => {
+        mensaje += `- ${item.nombre} (Cantidad: ${item.cantidad}, Precio: S/ ${item.precio.toFixed(2)})%0A`;
+    });
+    
+    // Calcular total
+    const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    const envio = 15.00;
+    const total = subtotal + envio;
+    
+    mensaje += `%0ASubtotal: S/ ${subtotal.toFixed(2)}%0A`;
+    mensaje += `Envío: S/ ${envio.toFixed(2)}%0A`;
+    mensaje += `*Total: S/ ${total.toFixed(2)}*%0A%0A`;
+    mensaje += `Mi número de contacto es: ${telefono}`;
+    
+    // Número del vendedor (sin espacios)
+    const numeroVendedor = '51922684873';
+    
+    // Determinar si es dispositivo móvil
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    let urlWhatsapp;
+    
+    if (isMobile) {
+        urlWhatsapp = `whatsapp://send?phone=${numeroVendedor}&text=${mensaje}`;
+    } else {
+        urlWhatsapp = `https://web.whatsapp.com/send?phone=${numeroVendedor}&text=${mensaje}`;
+    }
+    
+    // Redirigir a WhatsApp
+    window.location.href = urlWhatsapp;
+});
