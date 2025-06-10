@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - ModaStyle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/administracion.css">
+    
+</head>
+<body>
+    <!-- Pantalla de inicio de sesión -->
+    <div id="login-screen" class="login-container">
+        <div class="login-header">
+            <i class="fas fa-lock" style="font-size: 48px; color: var(--primary); margin-bottom: 15px;"></i>
+            <h2>Panel de Administración</h2>
+            <p>Ingresa tus credenciales para continuar</p>
+        </div>
+        
+        <div id="login-error" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> Usuario o contraseña incorrectos
+        </div>
+        
+        <form id="login-form">
+            <div class="input-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Usuario" required>
+            </div>
+            
+            <div class="input-icon">
+                <i class="fas fa-key"></i>
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <!-- Panel de administración -->
+    <div id="admin-panel" class="admin-container hidden">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="brand" >
+                <i class="fas fa-crown"></i>
+                <h1>ModaStyle</h1>
+            </div>
+            
+            <div class="nav-links">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Productos</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pedidos</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Estadísticas</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Ajustes</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="header">
+                <div class="welcome">
+                    <h2>Bienvenido, Administrador</h2>
+                    <p>Gestiona tu tienda de moda desde este panel</p>
+                </div>
+                
+                <div class="user-info">
+                    <span>admin@modastyle.com</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estadísticas -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-title">Productos Totales</div>
+                    <div class="card-value" id="total-products">0</div>
+                    <div class="card-info">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+0 desde el mes pasado</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Stock Total</div>
+                    <div class="card-value" id="total-stock">0</div>
+                    <div class="card-info">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+0 desde el mes pasado</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Valor Total del Inventario</div>
+                    <div class="card-value" id="total-value">S/ 0.00</div>
+                    <div class="card-info">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+0% desde el mes pasado</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gestión de productos -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h3>Gestionar Productos</h3>
+                    <button class="btn btn-primary" id="add-product-btn" onclick="mover()" >
+                        <i class="fas fa-plus"></i> Nuevo Producto
+                    </button>
+                </div>
+                
+                <div class="product-list" id="product-list">
+                    <!-- Los productos se cargarán dinámicamente aquí -->
+                    
+                </div>
+            </div>
+            
+            <!-- Formulario para agregar/editar productos -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h3 id="form-title">Agregar Nuevo Producto</h3>
+                </div>
+                
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Nombre del Producto*</label>
+                            <input type="text" id="product-name" placeholder="Ej: Polo Básico Blanco" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-price">Precio (S/)*</label>
+                            <input type="number" id="product-price" step="0.01" min="0" placeholder="Ej: 39.90" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Descripción*</label>
+                        <textarea id="product-description" placeholder="Describe el producto..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-image">URL de la Imagen Principal*</label>
+                            <input type="text" id="product-image" placeholder="https://..." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-type">Tipo*</label>
+                            <select id="product-type" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Polos">Polos</option>
+                                <option value="Camisas">Camisas</option>
+                                <option value="Poleras">Poleras</option>
+                                <option value="Pantalones">Pantalones</option>
+                                <option value="Vestidos">Vestidos</option>
+                                <option value="Chaquetas">Chaquetas</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-gender">Género*</label>
+                            <select id="product-gender" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-colors">Colores*</label>
+                            <input type="text" id="product-colors" placeholder="Ej: Blanco, Negro, Azul" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-sizes">Tallas*</label>
+                            <input type="text" id="product-sizes" placeholder="Ej: S, M, L, XL" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-material">Material*</label>
+                            <input type="text" id="product-material" placeholder="Ej: 100% Algodón" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-stock">Stock Disponible*</label>
+                        <input type="number" id="product-stock" min="0" placeholder="Ej: 15" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-images">URLs de Imágenes Adicionales (separadas por comas)</label>
+                        <input type="text" id="product-images" placeholder="Ej: https://..., https://...">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar Producto
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación flotante -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Producto guardado exitosamente!</span>
+    </div>
+
+    <!-- Botón flotante -->
+    <div class="floating-btn">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <script src="scripts/administracion.js" defer></script>
+</body>
+</html>
