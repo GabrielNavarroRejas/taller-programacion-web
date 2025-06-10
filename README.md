@@ -104,7 +104,7 @@ Este proyecto está protegido por la [Licencia MIT](LICENSE) – ¡siéntete lib
 - **GitHub**: [Abdiel Diaz Palomino](https://github.com/AbdielDiazPalomino)
 
 <p align="center">
-  <img src="https://media.giphy.com/media/26tPghhb310f8b0u4/giphy.gif" alt="Final Animation" width="350"/>
+  <!--<img src="https://media.giphy.com/media/26tPghhb310f8b0u4/giphy.gif" alt="Final Animation" width="350"/>-->
 </p>
 
 <h3 align="center">✨ ¡Gracias por explorar este proyecto! Espero que te haya volado la cabeza tanto como a mí crearlo. ✨</h3>
