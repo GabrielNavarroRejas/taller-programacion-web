@@ -33,7 +33,8 @@
         "imagen": "img/camisa-celeste.jpg",
         "imagenes": [
             "img/camisa-celeste.jpg",
-            "img/camisa-celeste-2.jpg"
+            "img/camisa-blanca.webp",
+            "img/camisa-azul-marino.webp"
         ],
         "tipo": "Camisas",
         "genero": "Hombre",
@@ -57,15 +58,14 @@
         "precio": 99.90,
         "imagen": "img/polera-mujer.jpg",
         "imagenes": [
-            "img/polera-mujer.jpg",
-            "img/polera-mujer-2.jpg"
+            "img/polera-mujer.jpg"
+            
         ],
         "tipo": "Poleras",
         "genero": "Mujer",
         "colores": [
-            "Negro",
-            "Gris",
-            "Blanco"
+            "Verde"
+            
         ],
         "tallas": [
             "XS",
@@ -83,13 +83,14 @@
         "imagen": "img/polo-tommy.webp",
         "imagenes": [
             "img/polo-tommy.webp",
-            "img/polo-tommy-2.webp"
+            "img/polo-tommy-hilfigger-rojo.webp",
+            "img/polo-tommy-blanco.webp"
         ],
         "tipo": "Polos",
         "genero": "Hombre",
         "colores": [
-            "Rojo",
             "Azul",
+            "Rojo",
             "Blanco"
         ],
         "tallas": [

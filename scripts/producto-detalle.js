@@ -177,11 +177,12 @@ function getColorHex(colorName) {
     const colors = {
         'Blanco': '#ffffff',
         'Negro': '#000000',
-        'Azul': '#2929ab',
+        'Azul': '#35359d',
         'Celeste': '#87CEEB',
         'Azul marino': '#000080',
         'Gris': '#808080',
-        'Rojo': '#ff0000'
+        'Rojo': '#eb3f3f',
+        'Verde': '#006b35',
     };
     return colors[colorName] || '#cccccc';
 }
