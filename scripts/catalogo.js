@@ -1,32 +1,29 @@
-// Este script maneja los filtros y la visualización de productos en el catálogo
+//Filtro de catalogo
 
-// Inicialización de productos y filtros
-let productos = [];  // Array donde se almacenarán los productos del catálogo
+let productos = [];
 let filtros = {
-    tipo: "Todos",  // Filtro por tipo de producto (por ejemplo, ropa, calzado, etc.)
-    genero: "Todos",  // Filtro por género (masculino, femenino, etc.)
-    precio: "ninguno"  // Filtro por rango de precios (ninguno, ascendente, descendente)
+    tipo: "Todos",
+    genero: "Todos",
+    precio: "ninguno"
 };
 
 
 // Aplicar filtros al cargar la página
 document.addEventListener("DOMContentLoaded", async () => {
-    // Cargar los productos desde un archivo JSON
     const respuesta = await fetch('productos.json');
     productos = await respuesta.json();
-    aplicarFiltros();  // Aplicar los filtros al cargar los productos
+    aplicarFiltros();
 
- // Evento para mostrar/ocultar el sidebar en dispositivos móviles
+    // Evento para mostrar/ocultar sidebar en móviles
     document.querySelector('.toggle-sidebar').addEventListener('click', () => {
         document.querySelector('.sidebar').classList.toggle('active');
     });
 });
 
-// Función para aplicar los filtros seleccionados
 function aplicarFiltros() {
-    let resultado = [...productos];  // Hacemos una copia de los productos para evitar modificar el original
+    let resultado = [...productos];
 
-    // Filtrar por tipo de producto
+    // Filtrar por tipo
     if (filtros.tipo !== "Todos") {
         resultado = resultado.filter(p => p.tipo === filtros.tipo);
     }
@@ -36,14 +33,14 @@ function aplicarFiltros() {
         resultado = resultado.filter(p => p.genero === filtros.genero);
     }
 
-    // Ordenar los productos por precio
+    // Ordenar por precio
     if (filtros.precio === "asc") {
-        resultado.sort((a, b) => a.precio - b.precio);  // Orden ascendente por precio
+        resultado.sort((a, b) => a.precio - b.precio);
     } else if (filtros.precio === "desc") {
-        resultado.sort((a, b) => b.precio - a.precio);  // Orden descendente por precio
+        resultado.sort((a, b) => b.precio - a.precio);
     }
 
-    // Aquí podrías añadir más lógica para mostrar los productos filtrados
+    renderizarProductos(resultado);
 }
 
 function actualizarBotonesActivos(grupoClase, valorActivo) {
