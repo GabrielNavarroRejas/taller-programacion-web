@@ -260,6 +260,28 @@
     display: none;
 }
 
+.notificacion {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .contenido-productos {
