@@ -1,34 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos del DOM
-    const searchToggle = document.getElementById('search-toggle');
-    const searchOverlay = document.getElementById('search-overlay');
-    const closeSearch = document.getElementById('close-search');
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    const searchSuggestions = document.getElementById('search-suggestions');
+    // Referencias a elementos del DOM
+    const searchToggle = document.getElementById('search-toggle');  // Botón para abrir la barra de búsqueda
+    const searchOverlay = document.getElementById('search-overlay');  // Contenedor del overlay de búsqueda
+    const closeSearch = document.getElementById('close-search');  // Botón para cerrar el overlay de búsqueda
+    const searchInput = document.getElementById('search-input');  // Campo de entrada para la búsqueda
+    const searchButton = document.getElementById('search-button');  // Botón para realizar la búsqueda
+    const searchSuggestions = document.getElementById('search-suggestions');  // Sugerencias de búsqueda
     
-    // Mostrar/ocultar el overlay de búsqueda
+    // Evento para mostrar el overlay de búsqueda
     searchToggle.addEventListener('click', function(e) {
         e.preventDefault();
-        searchOverlay.classList.add('active');
-        searchInput.focus();
+        searchOverlay.classList.add('active');  // Muestra el overlay de búsqueda
+        searchInput.focus();  // Pone el foco en el campo de búsqueda
     });
-    
+
+    // Evento para cerrar el overlay de búsqueda
     closeSearch.addEventListener('click', function() {
-        searchOverlay.classList.remove('active');
-        searchSuggestions.classList.remove('visible');
+        searchOverlay.classList.remove('active');  // Oculta el overlay
+        searchSuggestions.classList.remove('visible');  // Oculta las sugerencias
     });
-    
-    // Cargar productos desde el JSON
-    let products = [];
-    
+
+    let products = [];  // Variable para almacenar los productos
+
+    // Carga los productos desde el archivo JSON de manera asíncrona
     fetch('productos.json')
-        .then(response => response.json())
+        .then(response => response.json())  // Convierte la respuesta en formato JSON
         .then(data => {
-            products = data;
-        })
-        .catch(error => {
-            console.error('Error al cargar los productos:', error);
+            products = data;  // Guarda los productos en la variable
         });
     
     // Buscar productos y mostrar sugerencias

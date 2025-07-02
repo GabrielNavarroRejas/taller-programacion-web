@@ -95,45 +95,56 @@ function seleccionarColor(boton) {
     boton.classList.add('selected');
 }
 
-// Función para añadir al carrito
+
 function addToCart(producto) {
     try {
-        // Convertir el string de producto a objeto si es necesario
+        // 1. Convertir el producto a objeto si es un string
+        // En caso de que el producto sea pasado como una cadena JSON (por ejemplo, si se ha generado desde otro script), lo convertimos a un objeto.
         if (typeof producto === 'string') {
-            producto = JSON.parse(producto);
+            producto = JSON.parse(producto);  // Convertir el string en un objeto JSON
         }
         
-        // Obtener el carrito actual del localStorage
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        // 2. Obtener el carrito actual desde localStorage
+        // Intentamos obtener el carrito de localStorage. Si no existe, creamos un carrito vacío.
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];  // Si no existe, inicializamos un array vacío
         
-        // Verificar si el producto ya está en el carrito
+        // 3. Verificar si el producto ya está en el carrito
+        // Buscamos si el producto ya está presente en el carrito por su ID
         const productoExistente = carrito.find(item => item.id === producto.id);
         
         if (productoExistente) {
-            // Si ya existe, aumentar la cantidad en 1
-            productoExistente.cantidad += 1;
+            // 4. Si el producto ya existe en el carrito, aumentamos su cantidad
+            // Si el producto ya está en el carrito, solo incrementamos la cantidad en 1.
+            productoExistente.cantidad += 1;  // Aumentamos la cantidad
         } else {
-            // Si no existe, añadirlo al carrito con cantidad 1
+            // 5. Si el producto no existe, lo añadimos al carrito
+            // Si no existe, lo añadimos al carrito con una cantidad de 1
             carrito.push({
                 id: producto.id,
                 nombre: producto.nombre,
                 precio: producto.precio,
                 imagen: producto.imagen,
-                cantidad: 1
+                cantidad: 1  // Al principio, la cantidad es 1
             });
         }
         
-        // Guardar el carrito actualizado en localStorage
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        
-        // Actualizar el contador del carrito
-        actualizarContadorCarrito();
-        
-        // Mostrar notificación
-        mostrarNotificacion('Producto añadido al carrito');
+        // 6. Guardar el carrito actualizado en localStorage
+        // Guardamos el carrito actualizado en el almacenamiento local para mantener los datos entre sesiones.
+        localStorage.setItem('carrito', JSON.stringify(carrito));  // Convertimos el carrito a string y lo guardamos
+
+        // 7. Actualizar el contador del carrito
+        // Después de añadir el producto, actualizamos el contador que muestra el número de artículos en el carrito.
+        actualizarContadorCarrito();  // Esta función actualizará el número de artículos en el carrito
+
+        // 8. Mostrar una notificación al usuario de que el producto se añadió correctamente
+        // Proporcionamos retroalimentación visual al usuario de que el producto se ha añadido al carrito con éxito.
+        mostrarNotificacion('Producto añadido al carrito');  // Función para mostrar una notificación en la interfaz
+
     } catch (error) {
-        console.error('Error al añadir al carrito:', error);
-        mostrarNotificacion('Error al añadir el producto');
+        // 9. Manejo de errores
+        // Si ocurre un error en el proceso de añadir al carrito (por ejemplo, problemas con el localStorage), lo mostramos en la consola.
+        console.error('Error al añadir al carrito:', error);  // Imprime el error en la consola
+        mostrarNotificacion('Error al añadir el producto');  // Informa al usuario que ocurrió un error
     }
 }
 

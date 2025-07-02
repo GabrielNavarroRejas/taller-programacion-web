@@ -1,14 +1,21 @@
+// Este archivo maneja el inicio de sesión y la administración de productos en el panel de administración
+
+// ===============================
 // Manejo del inicio de sesión
+// ===============================
 document.getElementById('login-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevenimos que el formulario se envíe, ya que validamos los datos en JavaScript
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById('username').value;  // Obtenemos el nombre de usuario ingresado
+    const password = document.getElementById('password').value;  // Obtenemos la contraseña ingresada
 
+    // Validamos que el nombre de usuario y la contraseña sean correctos
     if (username === 'admin' && password === 'admin123') {
+        // Si son correctos, ocultamos la pantalla de inicio de sesión y mostramos el panel de administración
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('admin-panel').classList.remove('hidden');
     } else {
+        // Si son incorrectos, mostramos un mensaje de error y aplicamos un efecto visual
         document.getElementById('login-error').style.display = 'block';
         const form = document.getElementById('login-form');
         form.classList.add('shake');
@@ -16,7 +23,9 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     }
 });
 
+// ===============================
 // Base de datos de productos (simulada con localStorage)
+// ===============================
 let productos = [];
 let currentEditId = null;
 
@@ -25,8 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
     setupEventListeners();
 });
 
+
+// ===============================
+// Función para cargar productos
+// ===============================
+
 // Función para cargar productos
 function loadProducts() {
+    // Lógica para cargar productos desde el almacenamiento local o desde un servidor
     fetch('productos.json')
         .then(response => response.json())
         .then(data => {

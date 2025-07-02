@@ -1,12 +1,16 @@
+// Este script maneja la lógica del carrito de compras, cargando los productos almacenados en localStorage y mostrando su contenido
+
 document.addEventListener('DOMContentLoaded', () => {
     // Obtener el carrito del localStorage
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    console.log('Carrito cargado:', carrito);
-    const contenedor = document.querySelector('.cart-items');
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];  // Si no hay productos, se inicia como array vacío
+    console.log('Carrito cargado:', carrito);  // Solo para depuración
+
+    const contenedor = document.querySelector('.cart-items');  // Elemento donde se mostrará el contenido del carrito
     
     // Actualizar el contador del carrito
     actualizarContadorCarrito();
-    
+
+    // Si el carrito está vacío, mostramos un mensaje
     if (carrito.length === 0) {
         contenedor.innerHTML = `
             <div class="empty-cart">
@@ -16,8 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="catalogo.html" class="btn">Ver Catálogo</a>
             </div>
         `;
-        return;
+        return;  // Si está vacío, detenemos la ejecución del código
     }
+
     
     // Mostrar los productos del carrito
     contenedor.innerHTML = carrito.map(item => `
@@ -35,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="item-total">S/ ${(item.precio * item.cantidad).toFixed(2)}</div>
             <button class="remove-item"><i class="fas fa-trash"></i></button>
         </div>
-    `).join('');
+    `).join(''); // Usamos map y join para generar el HTML de cada producto
     
     // Inicializar los totales
     updateTotal();

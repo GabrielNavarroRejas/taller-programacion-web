@@ -50,40 +50,43 @@ function createRipple(event) {
 
     button.appendChild(circle);
 }
-
-// Validación de formulario
+// Validacion
 function validateForm(event) {
-    event.preventDefault();
+    event.preventDefault();  // Evita el envío del formulario hasta que la validación se complete
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value;  // Obtiene el valor del campo "nombre"
+    const email = document.getElementById('email').value;  // Obtiene el valor del campo "correo electrónico"
+    const message = document.getElementById('message').value;  // Obtiene el valor del campo "mensaje"
 
+    // Verifica que todos los campos obligatorios estén llenos
     if (!name || !email || !message) {
-        alert('Por favor completa todos los campos obligatorios');
-        return;
+        alert('Por favor completa todos los campos obligatorios');  // Alerta si falta algún campo
+        return;  // Detiene la ejecución si algún campo está vacío
     }
 
+    // Verifica que el correo electrónico tenga un formato válido utilizando una expresión regular
     if (!validateEmail(email)) {
-        alert('Por favor ingresa un correo electrónico válido');
-        return;
+        alert('Por favor ingresa un correo electrónico válido');  // Alerta si el formato del correo es incorrecto
+        return;  // Detiene la ejecución si el correo no es válido
     }
 
-    // Animación de éxito
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensaje Enviado';
-    submitBtn.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+    // Si la validación es exitosa, muestra una retroalimentación visual de éxito
+    const submitBtn = document.getElementById('submitBtn');  // Obtiene el botón de envío
+    submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensaje Enviado';  // Cambia el texto del botón
+    submitBtn.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';  // Cambia el estilo del botón
 
+    // Restaura el formulario y el estilo del botón después de 3 segundos
     setTimeout(() => {
-        document.getElementById('contactForm').reset();
-        submitBtn.innerHTML = 'Enviar Mensaje';
-        submitBtn.style.background = 'linear-gradient(135deg, var(--primary) 0%, #8a83ff 100%)';
+        document.getElementById('contactForm').reset();  // Restaura el formulario
+        submitBtn.innerHTML = 'Enviar Mensaje';  // Vuelve a cambiar el texto del botón
+        submitBtn.style.background = 'linear-gradient(135deg, var(--primary) 0%, #8a83ff 100%)';  // Restaura el estilo del botón
     }, 3000);
 }
 
+// Función para validar el formato del correo electrónico
 function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    const re = /^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());  // Devuelve true si el correo tiene un formato válido
 }
 
 // Inicialización
