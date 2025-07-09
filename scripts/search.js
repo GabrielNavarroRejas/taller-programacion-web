@@ -22,12 +22,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let products = [];  // Variable para almacenar los productos
 
-    // Carga los productos desde el archivo JSON de manera asíncrona
-    fetch('productos.json')
-        .then(response => response.json())  // Convierte la respuesta en formato JSON
-        .then(data => {
-            products = data;  // Guarda los productos en la variable
-        });
+    // Cargar productos desde localStorage o productos.json
+    function cargarProductos() {
+        try {
+            const savedProducts = localStorage.getItem('modastyle_products');
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+                console.log('Productos cargados desde localStorage para búsqueda:', products.length);
+            } else {
+                // Fallback a productos.json
+                fetch('productos.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        products = data;
+                        console.log('Productos cargados desde productos.json para búsqueda:', products.length);
+                    })
+                    .catch(error => {
+                        console.error('Error cargando productos para búsqueda:', error);
+                        products = [];
+                    });
+            }
+        } catch (error) {
+            console.error('Error al cargar productos para búsqueda:', error);
+            // Fallback a productos.json
+            fetch('productos.json')
+                .then(response => response.json())
+                .then(data => {
+                    products = data;
+                })
+                .catch(error => {
+                    console.error('Error en fallback para búsqueda:', error);
+                    products = [];
+                });
+        }
+    }
+    
+    // Cargar productos al inicio
+    cargarProductos();
+    
+    // Listener para evento personalizado de productos actualizados
+    window.addEventListener('productosActualizados', function(e) {
+        products = e.detail.productos;
+        console.log('Productos actualizados en búsqueda:', products.length);
+    });
     
     // Buscar productos y mostrar sugerencias
     searchInput.addEventListener('input', function() {

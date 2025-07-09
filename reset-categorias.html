@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resetear Categorías</title>
+</head>
+<body>
+    <h1>Reseteando categorías...</h1>
+    <p>Las categorías han sido reseteadas. Ahora se usarán las categorías del HTML del catálogo.</p>
+    
+    <script>
+        // Limpiar las categorías guardadas
+        localStorage.removeItem('modastyle_categorias');
+        
+        // Mostrar mensaje de confirmación
+        alert('Categorías reseteadas. Ahora se usarán las categorías del HTML del catálogo.');
+        
+        // Redirigir al catálogo después de 2 segundos
+        setTimeout(() => {
+            window.location.href = 'catalogo.html';
+        }, 2000);
+    </script>
+</body>
+</html> 

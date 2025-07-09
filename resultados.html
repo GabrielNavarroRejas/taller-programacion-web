@@ -31,7 +31,10 @@
             <div class="nav-icons">
                 <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
                 <a href="administracion.html"><i class="fas fa-user"></i></a>
-                <a href="carrito.html"><i class="fas fa-shopping-bag"></i></a>
+                <a href="carrito.html" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
             </div>
             <div class="search-overlay" id="search-overlay">
                 <div class="search-container">
@@ -108,5 +111,6 @@
     <script src="scripts/resultados.js" defer></script>
     <script src="scripts/search.js" defer></script>
     <script src="scripts/header-responsive.js" defer></script>
+    <script src="scripts/cart-counter.js" defer></script>
 </body>
 </html>

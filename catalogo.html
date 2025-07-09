@@ -48,7 +48,10 @@
             <div class="nav-icons">
                 <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
                 <a href="administracion.html"><i class="fas fa-user"></i></a>
-                <a href="carrito.html"><i class="fas fa-shopping-bag"></i></a>
+                <a href="carrito.html" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
             </div>
             <div class="search-overlay" id="search-overlay">
                 <div class="search-container">
@@ -79,6 +82,7 @@
                 <option value="Todos">Todos los géneros</option>
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>
+                <option value="Unisex">Unisex</option>
             </select>
         </div>
         
@@ -95,27 +99,28 @@
         <aside class="sidebar">
             <div class="filtro filtro-tipo">
                 <h3><i class="fas fa-tshirt"></i> Tipo de prenda</h3>
-                <ul>
-                    <li><button onclick="filtrarPorTipo('Todos')"><i class="fas fa-star"></i> Todos</button></li>
+                <ul id="categorias-filtro">
+                    <li><button onclick="filtrarPorTipo('Todos')" class="active"><i class="fas fa-star"></i> Todos</button></li>
                     <li><button onclick="filtrarPorTipo('Polos')"><i class="fas fa-tshirt"></i> Polos</button></li>
-                    <li><button onclick="filtrarPorTipo('Camisas')"><i class="fas fa-shirt"></i> Camisas</button></li>
-                    <li><button onclick="filtrarPorTipo('Poleras')"><i class="fas fa-hoodie"></i> Poleras</button></li>
+                    <li><button onclick="filtrarPorTipo('Camisas')"><i class="fas fa-user-tie"></i> Camisas</button></li>
+                    <li><button onclick="filtrarPorTipo('Poleras')"><i class="fas fa-tshirt"></i> Poleras</button></li>
                 </ul>
             </div>
 
             <div class="filtro filtro-genero">
                 <h3><i class="fas fa-venus-mars"></i> Género</h3>
                 <ul>
-                    <li><button onclick="filtrarPorGenero('Todos')"><i class="fas fa-globe"></i> Todos</button></li>
+                    <li><button onclick="filtrarPorGenero('Todos')" class="active"><i class="fas fa-globe"></i> Todos</button></li>
                     <li><button onclick="filtrarPorGenero('Hombre')"><i class="fas fa-mars"></i> Hombre</button></li>
                     <li><button onclick="filtrarPorGenero('Mujer')"><i class="fas fa-venus"></i> Mujer</button></li>
+                    <li><button onclick="filtrarPorGenero('Unisex')"><i class="fas fa-venus-mars"></i> Unisex</button></li>
                 </ul>
             </div>
 
             <div class="filtro filtro-precio">
                 <h3><i class="fas fa-sort-amount-down"></i> Ordenar por precio</h3>
                 <ul>
-                    <li><button onclick="ordenarPrecio('ninguno')"><i class="fas fa-bars"></i> Ninguno</button></li>
+                    <li><button onclick="ordenarPrecio('ninguno')" class="active"><i class="fas fa-bars"></i> Ninguno</button></li>
                     <li><button onclick="ordenarPrecio('asc')"><i class="fas fa-sort-amount-down-alt"></i> Menor a mayor</button></li>
                     <li><button onclick="ordenarPrecio('desc')"><i class="fas fa-sort-amount-down"></i> Mayor a menor</button></li>
                 </ul>
@@ -179,6 +184,7 @@
     <script src="scripts/catalogo.js" defer></script>
     <script src="scripts/search.js" defer></script>
     <script src="scripts/header-responsive.js" defer></script>
+    <script src="scripts/cart-counter.js" defer></script>
     
      
 </body>

@@ -10,11 +10,13 @@
             "img/polo-blanco-2.webp",
             "img/polo-blanco-3.jpg"
         ],
+        "colorImageMappings": {
+            "Blanco": "img/polo-blanco.jpg"
+        },
         "tipo": "Polos",
         "genero": "Hombre",
         "colores": [
             "Blanco"
-            
         ],
         "tallas": [
             "S",
@@ -23,7 +25,14 @@
             "XL"
         ],
         "material": "100% Algodón",
-        "stock": 15
+        "stock": {
+            "Blanco": {
+                "S": 5,
+                "M": 8,
+                "L": 6,
+                "XL": 4
+            }
+        }
     },
     {
         "id": 2,
@@ -36,6 +45,11 @@
             "img/camisa-blanca.webp",
             "img/camisa-azul-marino.webp"
         ],
+        "colorImageMappings": {
+            "Celeste": "img/camisa-celeste.jpg",
+            "Blanco": "img/camisa-blanca.webp",
+            "Azul marino": "img/camisa-azul-marino.webp"
+        },
         "tipo": "Camisas",
         "genero": "Hombre",
         "colores": [
@@ -49,7 +63,23 @@
             "XL"
         ],
         "material": "Algodón 80% - Poliéster 20%",
-        "stock": 8
+        "stock": {
+            "Celeste": {
+                "M": 3,
+                "L": 4,
+                "XL": 2
+            },
+            "Blanco": {
+                "M": 2,
+                "L": 3,
+                "XL": 1
+            },
+            "Azul marino": {
+                "M": 2,
+                "L": 3,
+                "XL": 2
+            }
+        }
     },
     {
         "id": 3,
@@ -59,13 +89,14 @@
         "imagen": "img/polera-mujer.jpg",
         "imagenes": [
             "img/polera-mujer.jpg"
-            
         ],
+        "colorImageMappings": {
+            "Verde": "img/polera-mujer.jpg"
+        },
         "tipo": "Poleras",
         "genero": "Mujer",
         "colores": [
             "Verde"
-            
         ],
         "tallas": [
             "XS",
@@ -73,7 +104,13 @@
             "M"
         ],
         "material": "Algodón 100%",
-        "stock": 12
+        "stock": {
+            "Verde": {
+                "XS": 4,
+                "S": 6,
+                "M": 8
+            }
+        }
     },
     {
         "id": 4,
@@ -86,6 +123,11 @@
             "img/polo-tommy-hilfigger-rojo.webp",
             "img/polo-tommy-blanco.webp"
         ],
+        "colorImageMappings": {
+            "Azul": "img/polo-tommy.webp",
+            "Rojo": "img/polo-tommy-hilfigger-rojo.webp",
+            "Blanco": "img/polo-tommy-blanco.webp"
+        },
         "tipo": "Polos",
         "genero": "Hombre",
         "colores": [
@@ -100,6 +142,193 @@
             "XL"
         ],
         "material": "Algodón pima 100%",
-        "stock": 5
+        "stock": {
+            "Azul": {
+                "S": 2,
+                "M": 3,
+                "L": 2,
+                "XL": 1
+            },
+            "Rojo": {
+                "S": 1,
+                "M": 2,
+                "L": 1,
+                "XL": 1
+            },
+            "Blanco": {
+                "S": 2,
+                "M": 3,
+                "L": 2,
+                "XL": 1
+            }
+        }
+    },
+    {
+        "id": 5,
+        "nombre": "Camisa Formal Negra",
+        "descripcion": "Camisa elegante para eventos formales. Material premium con acabados de alta calidad.",
+        "precio": 129.90,
+        "imagen": "img/camisa-azul-marino.webp",
+        "imagenes": [
+            "img/camisa-azul-marino.webp",
+            "img/camisa-blanca.webp"
+        ],
+        "colorImageMappings": {
+            "Negro": "img/camisa-azul-marino.webp",
+            "Blanco": "img/camisa-blanca.webp"
+        },
+        "tipo": "Camisas",
+        "genero": "Hombre",
+        "colores": [
+            "Negro",
+            "Blanco"
+        ],
+        "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "Algodón 100% Premium",
+        "stock": {
+            "Negro": {
+                "S": 3,
+                "M": 5,
+                "L": 4,
+                "XL": 2
+            },
+            "Blanco": {
+                "S": 4,
+                "M": 6,
+                "L": 5,
+                "XL": 3
+            }
+        }
+    },
+    {
+        "id": 6,
+        "nombre": "Polera Deportiva",
+        "descripcion": "Polera ideal para actividades deportivas. Material transpirable y cómodo.",
+        "precio": 69.90,
+        "imagen": "img/polo-blanco.jpg",
+        "imagenes": [
+            "img/polo-blanco.jpg",
+            "img/polo-blanco-2.webp"
+        ],
+        "colorImageMappings": {
+            "Gris": "img/polo-blanco.jpg",
+            "Negro": "img/polo-blanco-2.webp"
+        },
+        "tipo": "Poleras",
+        "genero": "Unisex",
+        "colores": [
+            "Gris",
+            "Negro"
+        ],
+        "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "Poliéster 85% - Elastano 15%",
+        "stock": {
+            "Gris": {
+                "S": 6,
+                "M": 8,
+                "L": 7,
+                "XL": 5
+            },
+            "Negro": {
+                "S": 5,
+                "M": 7,
+                "L": 6,
+                "XL": 4
+            }
+        }
+    },
+    {
+        "id": 7,
+        "nombre": "Polo Casual Azul",
+        "descripcion": "Polo casual perfecto para el día a día. Diseño moderno y cómodo.",
+        "precio": 49.90,
+        "imagen": "img/polo-blanco-3.jpg",
+        "imagenes": [
+            "img/polo-blanco-3.jpg",
+            "img/polo-blanco.jpg"
+        ],
+        "colorImageMappings": {
+            "Azul": "img/polo-blanco-3.jpg",
+            "Blanco": "img/polo-blanco.jpg"
+        },
+        "tipo": "Polos",
+        "genero": "Hombre",
+        "colores": [
+            "Azul",
+            "Blanco"
+        ],
+        "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "material": "Algodón 95% - Elastano 5%",
+        "stock": {
+            "Azul": {
+                "S": 4,
+                "M": 6,
+                "L": 5,
+                "XL": 3
+            },
+            "Blanco": {
+                "S": 5,
+                "M": 7,
+                "L": 6,
+                "XL": 4
+            }
+        }
+    },
+    {
+        "id": 8,
+        "nombre": "Camisa Elegante Rosa",
+        "descripcion": "Camisa elegante para damas. Diseño sofisticado con detalles únicos.",
+        "precio": 89.90,
+        "imagen": "img/camisa-celeste.jpg",
+        "imagenes": [
+            "img/camisa-celeste.jpg",
+            "img/camisa-blanca.webp"
+        ],
+        "colorImageMappings": {
+            "Rosa": "img/camisa-celeste.jpg",
+            "Blanco": "img/camisa-blanca.webp"
+        },
+        "tipo": "Camisas",
+        "genero": "Mujer",
+        "colores": [
+            "Rosa",
+            "Blanco"
+        ],
+        "tallas": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ],
+        "material": "Seda 70% - Algodón 30%",
+        "stock": {
+            "Rosa": {
+                "XS": 2,
+                "S": 4,
+                "M": 5,
+                "L": 3
+            },
+            "Blanco": {
+                "XS": 3,
+                "S": 5,
+                "M": 6,
+                "L": 4
+            }
+        }
     }
 ]

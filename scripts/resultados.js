@@ -7,17 +7,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchTerm = localStorage.getItem('searchTerm') || '';  // Si no hay término en el localStorage, se asigna una cadena vacía
     resultsTitle.textContent = `Resultados para: "${searchTerm}"`;  // Muestra el término de búsqueda en el título
 
+    // Cargar productos desde localStorage o productos.json
+    function cargarProductos() {
+        try {
+            const savedProducts = localStorage.getItem('modastyle_products');
+            if (savedProducts) {
+                const products = JSON.parse(savedProducts);
+                console.log('Productos cargados desde localStorage para resultados:', products.length);
+                const results = searchProducts(products, searchTerm);
+                displayResults(results);
+            } else {
+                // Fallback a productos.json
+                fetch('productos.json')
+                    .then(response => response.json())
+                    .then(products => {
+                        console.log('Productos cargados desde productos.json para resultados:', products.length);
+                        const results = searchProducts(products, searchTerm);
+                        displayResults(results);
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar los productos:', error);
+                        noResults.style.display = 'block';
+                    });
+            }
+        } catch (error) {
+            console.error('Error al cargar productos para resultados:', error);
+            // Fallback a productos.json
+            fetch('productos.json')
+                .then(response => response.json())
+                .then(products => {
+                    const results = searchProducts(products, searchTerm);
+                    displayResults(results);
+                })
+                .catch(error => {
+                    console.error('Error en fallback para resultados:', error);
+                    noResults.style.display = 'block';
+                });
+        }
+    }
+    
     // Cargar productos y mostrar resultados
-    fetch('productos.json')  // Asíncronamente carga los productos desde el archivo JSON
-        .then(response => response.json())  // Convierte la respuesta en formato JSON
-        .then(products => {
-            const results = searchProducts(products, searchTerm);  // Filtra los productos por el término de búsqueda
-            displayResults(results);  // Muestra los resultados en el contenedor
-        })
-        .catch(error => {
-            console.error('Error al cargar los productos:', error);  // Maneja errores de carga
-            noResults.style.display = 'block';  // Muestra un mensaje de "sin resultados"
-        });
+    cargarProductos();
+    
+    // Listener para evento personalizado de productos actualizados
+    window.addEventListener('productosActualizados', function(e) {
+        const products = e.detail.productos;
+        console.log('Productos actualizados en resultados:', products.length);
+        const results = searchProducts(products, searchTerm);
+        displayResults(results);
+    });
 
     // Función para buscar productos basados en el término de búsqueda
     function searchProducts(products, query) {
@@ -45,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="result-card-category">${product.tipo}</span>
                         <h3 class="result-card-title">${product.nombre}</h3>
                         <p class="result-card-price">S/. ${product.precio.toFixed(2)}</p>
-                        <a href="#" class="result-card-btn">Ver producto</a>
+                        <a href="producto-detalle.html?id=${product.id}" class="result-card-btn">Ver producto</a>
                     </div>
                 </div>
             `;

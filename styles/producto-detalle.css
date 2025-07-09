@@ -193,12 +193,508 @@
   transform: translateY(0);
 }
 
+/* Estilos para la sección de comentarios */
+.seccion-comentarios {
+    grid-column: 1 / -1;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid var(--gray);
+    position: relative;
+}
+
+.seccion-comentarios::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.seccion-comentarios h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--dark);
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+}
+
+.seccion-comentarios h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.formulario-comentario {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.formulario-comentario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.formulario-comentario h3 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    color: var(--dark);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.formulario-comentario h3::before {
+    content: '💬';
+    font-size: 1.2rem;
+}
+
+.calificacion-input {
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.calificacion-input label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.1rem;
+}
+
+.estrellas {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.estrellas i {
+    font-size: 28px;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.estrellas i:hover {
+    color: #ffd700;
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+}
+
+.estrellas i.active {
+    color: #ffd700;
+    transform: scale(1.1);
+    filter: drop-shadow(0 3px 6px rgba(255, 215, 0, 0.4));
+    animation: starPulse 0.6s ease-out;
+}
+
+@keyframes starPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes ratingSelected {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1.05); }
+}
+
+.rating-text {
+    font-size: 15px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.rating-text.rating-selected {
+    color: var(--primary);
+    font-weight: 600;
+    transform: scale(1.05);
+}
+
+.input-grupo {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-grupo label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.input-grupo label::after {
+    content: ' *';
+    color: #ff4757;
+    font-weight: bold;
+}
+
+.input-grupo input,
+.input-grupo textarea {
+    width: 100%;
+    padding: 15px 18px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.input-grupo input:focus,
+.input-grupo textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.input-grupo input:hover,
+.input-grupo textarea:hover {
+    border-color: #b8d4f3;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.input-grupo textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+.btn-enviar-comentario {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.btn-enviar-comentario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-enviar-comentario:hover::before {
+    left: 100%;
+}
+
+.btn-enviar-comentario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+}
+
+.btn-enviar-comentario:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+}
+
+.btn-enviar-comentario i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-enviar-comentario:hover i {
+    transform: translateX(3px);
+}
+
+.sin-comentarios {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    border: 2px dashed #dee2e6;
+    position: relative;
+    overflow: hidden;
+}
+
+.sin-comentarios::before {
+    content: '💭';
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.sin-comentarios::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.resumen-calificaciones {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.resumen-calificaciones::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.calificacion-promedio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.numero-promedio {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.estrellas-promedio {
+    display: flex;
+    gap: 3px;
+}
+
+.estrellas-promedio i {
+    font-size: 20px;
+    color: #ddd;
+}
+
+.estrellas-promedio i.active {
+    color: #ffd700;
+}
+
+.total-comentarios {
+    font-size: 14px;
+    color: #666;
+}
+
+.comentarios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.comentario-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInUp 0.6s ease-out;
+}
+
+.comentario-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.comentario-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.comentario-item:hover::before {
+    opacity: 1;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.usuario-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nombre-usuario {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 16px;
+}
+
+.estrellas-comentario {
+    display: flex;
+    gap: 2px;
+}
+
+.estrellas-comentario i {
+    font-size: 14px;
+    color: #ddd;
+}
+
+.estrellas-comentario i.active {
+    color: #ffd700;
+}
+
+.fecha-comentario {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+}
+
+.texto-comentario {
+    line-height: 1.6;
+    color: #444;
+    font-size: 15px;
+}
+
 @media (max-width: 768px) {
     .producto-detalle {
         grid-template-columns: 1fr;
         margin-top: 80px;
     }
+    
+    .seccion-comentarios {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    
+    .seccion-comentarios h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .formulario-comentario {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .estrellas i {
+        font-size: 20px;
+    }
+    
+    .comentario-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .fecha-comentario {
+        align-self: flex-end;
+    }
+    
+    .numero-promedio {
+        font-size: 2rem;
+    }
+    
+    .estrellas-promedio i {
+        font-size: 18px;
+    }
+}
 
+/* Solo cambiar el layout de la galería en pantallas muy pequeñas */
+@media (max-width: 480px) {
     .galeria-producto {
         grid-template-columns: 1fr;
     }

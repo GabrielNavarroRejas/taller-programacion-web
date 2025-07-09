@@ -36,10 +36,117 @@
         </form>
     </div>
 
+    <!-- Notificación -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Operación completada</span>
+    </div>
+
+    <!-- Modal para Stock Total -->
+    <div id="stock-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cubes"></i> Informe de Stock Total</h2>
+                <button class="modal-close" onclick="closeModal('stock-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="stock-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('stock-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportStockReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Productos Totales -->
+    <div id="products-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tshirt"></i> Todos los Productos</h2>
+                <button class="modal-close" onclick="closeModal('products-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="products-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('products-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="addNewProductFromModal()">
+                    <i class="fas fa-plus"></i> Agregar Producto
+                </button>
+                <button class="modal-btn modal-btn-success" onclick="exportProductsReport()">
+                    <i class="fas fa-file-pdf"></i> Exportar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Valor Total del Inventario -->
+    <div id="value-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-dollar-sign"></i> Valor Total del Inventario</h2>
+                <button class="modal-close" onclick="closeModal('value-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="value-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('value-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportValueReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Comentarios -->
+    <div id="comments-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> Todos los Comentarios</h2>
+                <button class="modal-close" onclick="closeModal('comments-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="comments-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('comments-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-danger" onclick="deleteAllComments()">
+                    <i class="fas fa-trash"></i> Eliminar Todos
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportCommentsReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Panel de administración -->
     <div id="admin-panel" class="admin-container hidden">
         
         <!-- Sidebar -->
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="sidebar">
             <div class="brand" >
                 <i class="fas fa-crown"></i>
@@ -56,6 +163,10 @@
                     <span>Productos</span>
                 </div>
                 <div class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Categorías</span>
+                </div>
+                <div class="nav-item">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Pedidos</span>
                 </div>
@@ -63,171 +174,365 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Estadísticas</span>
                 </div>
-                <div class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Ajustes</span>
-                </div>
+                
             </div>
         </div>
         
         <!-- Contenido principal -->
         <div class="main-content">
-            <div class="header">
-                <div class="welcome">
-                    <h2>Bienvenido, Administrador</h2>
-                    <p>Gestiona tu tienda de moda desde este panel</p>
-                </div>
-                
-                <div class="user-info">
-                    <span>admin@modastyle.com</span>
-                    <div class="user-avatar">
-                        <i class="fas fa-user"></i>
+            <!-- DASHBOARD -->
+            <div id="section-dashboard">
+                <div class="header">
+                    <div class="welcome">
+                        <h2>Bienvenido, Administrador</h2>
+                        <p>Gestiona tu tienda de moda desde este panel</p>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Estadísticas -->
-            <div class="dashboard-cards">
-                <div class="card">
-                    <div class="card-title">Productos Totales</div>
-                    <div class="card-value" id="total-products">0</div>
-                    <div class="card-info">
-                        <i class="fas fa-arrow-up"></i>
-                        <span>+0 desde el mes pasado</span>
-                    </div>
-                    <div class="card-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-title">Stock Total</div>
-                    <div class="card-value" id="total-stock">0</div>
-                    <div class="card-info">
-                        <i class="fas fa-arrow-up"></i>
-                        <span>+0 desde el mes pasado</span>
-                    </div>
-                    <div class="card-icon">
-                        <i class="fas fa-box"></i>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-title">Valor Total del Inventario</div>
-                    <div class="card-value" id="total-value">S/ 0.00</div>
-                    <div class="card-info">
-                        <i class="fas fa-arrow-up"></i>
-                        <span>+0% desde el mes pasado</span>
-                    </div>
-                    <div class="card-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Gestión de productos -->
-            <div class="admin-section">
-                <div class="section-header">
-                    <h3>Gestionar Productos</h3>
-                    <button class="btn btn-primary" id="add-product-btn" onclick="mover()" >
-                        <i class="fas fa-plus"></i> Nuevo Producto
-                    </button>
-                </div>
-                
-                <div class="product-list" id="product-list">
-                    <!-- Los productos se cargarán dinámicamente aquí -->
-                    
-                </div>
-            </div>
-            
-            <!-- Formulario para agregar/editar productos -->
-            <div class="admin-section">
-                <div class="section-header">
-                    <h3 id="form-title">Agregar Nuevo Producto</h3>
-                </div>
-                
-                <form id="product-form">
-                    <input type="hidden" id="product-id">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="product-name">Nombre del Producto*</label>
-                            <input type="text" id="product-name" placeholder="Ej: Polo Básico Blanco" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="product-price">Precio (S/)*</label>
-                            <input type="number" id="product-price" step="0.01" min="0" placeholder="Ej: 39.90" required>
+                    <div class="user-info">
+                        <span>admin@modastyle.com</span>
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="product-description">Descripción*</label>
-                        <textarea id="product-description" placeholder="Describe el producto..." required></textarea>
+                </div>
+                <div class="dashboard-cards">
+                    <div class="card clickable-card" id="dashboard-products-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Productos Totales</div>
+                        <div class="card-value" id="total-products">0</div>
+                        <button class="mini-report-btn" onclick="openModal('products-modal'); event.stopPropagation();">Ver informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+0 desde el mes pasado</span>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
                     </div>
-                    
-                    <div class="form-row">
+                    <div class="card clickable-card" id="dashboard-stock-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Stock Total</div>
+                        <div class="card-value" id="total-stock">0</div>
+                        <button class="mini-report-btn" onclick="openModal('stock-modal'); event.stopPropagation();">Ver informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+0 desde el mes pasado</span>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                    </div>
+                    <div class="card clickable-card" id="dashboard-value-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Valor Total del Inventario</div>
+                        <div class="card-value" id="total-value">S/ 0.00</div>
+                        <button class="mini-report-btn" onclick="openModal('value-modal'); event.stopPropagation();">Ver informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+0% desde el mes pasado</span>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                    <div class="card clickable-card" id="dashboard-comments-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Comentarios Totales</div>
+                        <div class="card-value" id="total-comments">0</div>
+                        <button class="mini-report-btn" onclick="openModal('comments-modal'); event.stopPropagation();">Ver comentarios</button>
+                        <div class="card-info">
+                            <i class="fas fa-star"></i>
+                            <span>Calificación promedio: 0.0</span>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de detalles de productos -->
+                <div id="section-dashboard-products" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Productos</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="products-detail-grid" id="products-detail-grid">
+                            <!-- Los productos se mostrarán aquí con imágenes -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de detalles de stock -->
+                <div id="section-dashboard-stock" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Stock</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="stock-detail-table" id="stock-detail-table">
+                            <!-- La tabla de stock se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de detalles de valor -->
+                <div id="section-dashboard-value" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Valor del Inventario</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="value-detail-table" id="value-detail-table">
+                            <!-- La tabla de valores se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRODUCTOS -->
+            <div id="section-productos" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestionar Productos</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary" id="add-product-btn" onclick="mover()" >
+                                <i class="fas fa-plus"></i> Nuevo Producto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-list" id="product-list">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3 id="form-title">Agregar Nuevo Producto</h3>
+                    </div>
+                    <form id="product-form" onsubmit="return false;">
+                        <input type="hidden" id="product-id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-name">Nombre del Producto*</label>
+                                <input type="text" id="product-name" placeholder="Ej: Polo Básico Blanco" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Precio (S/)*</label>
+                                <input type="number" id="product-price" step="0.01" min="0" placeholder="Ej: 39.90" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Descripción*</label>
+                            <textarea id="product-description" placeholder="Describe el producto..." required></textarea>
+                        </div>
                         <div class="form-group">
                             <label for="product-image">URL de la Imagen Principal*</label>
                             <input type="text" id="product-image" placeholder="https://..." required>
+                            <small class="help-text">Ejemplo: https://ejemplo.com/imagen.jpg</small>
                         </div>
-                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-type">Tipo*</label>
+                                <select id="product-type" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Polos">Polos</option>
+                                    <option value="Camisas">Camisas</option>
+                                    <option value="Poleras">Poleras</option>
+                                    <option value="Pantalones">Pantalones</option>
+                                    <option value="Vestidos">Vestidos</option>
+                                    <option value="Chaquetas">Chaquetas</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-gender">Género*</label>
+                                <select id="product-gender" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                    <option value="Unisex">Unisex</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="product-type">Tipo*</label>
-                            <select id="product-type" required>
-                                <option value="">Seleccione...</option>
-                                <option value="Polos">Polos</option>
-                                <option value="Camisas">Camisas</option>
-                                <option value="Poleras">Poleras</option>
-                                <option value="Pantalones">Pantalones</option>
-                                <option value="Vestidos">Vestidos</option>
-                                <option value="Chaquetas">Chaquetas</option>
-                            </select>
+                            <label for="product-colors">Colores*</label>
+                            <div class="colors-container">
+                                <div class="color-input-group">
+                                    <input type="text" id="product-colors" placeholder="Escribe un color y presiona Enter o el botón +" required>
+                                    <button type="button" id="add-color-btn" class="add-btn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+                                <div id="colors-list" class="colors-list">
+                                    <!-- Los colores se agregarán dinámicamente aquí -->
+                                </div>
+                            </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-sizes">Tallas*</label>
+                                <input type="text" id="product-sizes" placeholder="Ej: S, M, L, XL" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-material">Material*</label>
+                                <input type="text" id="product-material" placeholder="Ej: 100% Algodón" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock por Color y Talla*</label>
+                            <div class="stock-container">
+                                <div class="stock-input-group">
+                                    <select id="stock-color-selector" style="margin-right: 10px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                                        <option value="">Seleccionar color...</option>
+                                    </select>
+                                    <select id="stock-size-selector" style="margin-right: 10px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                                        <option value="">Seleccionar talla...</option>
+                                    </select>
+                                    <input type="number" id="stock-quantity" min="0" placeholder="Cantidad" style="flex: 1; margin-right: 10px; padding: 12px; font-size: 14px;">
+                                    <button type="button" id="add-stock-btn" class="add-btn">
+                                        <i class="fas fa-plus"></i> Agregar Stock
+                                    </button>
+                                </div>
+                                <div id="stock-list" class="stock-list">
+                                    <!-- El stock por color y talla se agregará dinámicamente aquí -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-images">Imágenes por Color</label>
+                            <div class="images-container">
+                                <div class="color-image-mapping">
+
+                                    <div id="color-image-mappings">
+                                        <!-- Los mapeos color-imagen se agregarán dinámicamente aquí -->
+                                    </div>
+                                    <div class="add-mapping-group">
+                                        <select id="color-selector" style="margin-right: 10px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                                            <option value="">Seleccionar color...</option>
+                                        </select>
+                                        <input type="text" id="color-image-url" placeholder="URL de la imagen para este color" style="flex: 1; margin-right: 10px; padding: 12px; font-size: 14px;">
+                                        <button type="button" id="add-color-image-btn" class="add-btn">
+                                            <i class="fas fa-plus"></i> Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="images-list" class="images-list">
+                                    <!-- Las imágenes se agregarán dinámicamente aquí -->
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" id="save-product-btn" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar Producto
+                        </button>
+                    </form>
+                </div>
+                <div class="admin-section info-section">
+                    <!-- Eliminado: ayuda de productos -->
+                </div>
+            </div>
+            <!-- CATEGORÍAS -->
+            <div id="section-categorias" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestionar Categorías</h3>
                     </div>
-                    
-                    <div class="form-row">
+                    <div class="category-list" id="category-list">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3 id="category-form-title">Agregar Nueva Categoría</h3>
+                    </div>
+                    <form id="category-form" onsubmit="return false;">
+                        <input type="hidden" id="category-id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category-name">Nombre de la Categoría*</label>
+                                <input type="text" id="category-name" placeholder="Ej: Polos, Camisas, Vestidos" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category-description">Descripción</label>
+                                <input type="text" id="category-description" placeholder="Descripción breve de la categoría">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category-icon">Icono (FontAwesome)*</label>
+                                <input type="text" id="category-icon" placeholder="Ej: fas fa-tshirt" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category-color">Color de la Categoría</label>
+                                <input type="color" id="category-color" value="#6C63FF">
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="product-gender">Género*</label>
-                            <select id="product-gender" required>
-                                <option value="">Seleccione...</option>
+                            <label for="category-gender">Género Principal</label>
+                            <select id="category-gender">
+                                <option value="">Sin especificar</option>
                                 <option value="Hombre">Hombre</option>
                                 <option value="Mujer">Mujer</option>
                                 <option value="Unisex">Unisex</option>
                             </select>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="product-colors">Colores*</label>
-                            <input type="text" id="product-colors" placeholder="Ej: Blanco, Negro, Azul" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="product-sizes">Tallas*</label>
-                            <input type="text" id="product-sizes" placeholder="Ej: S, M, L, XL" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="product-material">Material*</label>
-                            <input type="text" id="product-material" placeholder="Ej: 100% Algodón" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="product-stock">Stock Disponible*</label>
-                        <input type="number" id="product-stock" min="0" placeholder="Ej: 15" required>
-                    </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar Categoría
+                        </button>
+                    </form>
+                </div>
 
-                    <div class="form-group">
-                        <label for="product-images">URLs de Imágenes Adicionales (separadas por comas)</label>
-                        <input type="text" id="product-images" placeholder="Ej: https://..., https://...">
+            </div>
+            <!-- PEDIDOS -->
+            <div id="section-pedidos" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestión de Pedidos</h3>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Guardar Producto
-                    </button>
-                </form>
+                    <div class="info-section">
+                        <p>Aquí aparecerán los pedidos realizados por los clientes. Podrás ver el estado, detalles y gestionar el envío.</p>
+                        <ul>
+                            <li>Ver pedidos recientes y su estado.</li>
+                            <li>Actualizar el estado de los pedidos.</li>
+                            <li>Consultar historial de compras.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- ESTADÍSTICAS -->
+            <div id="section-estadisticas" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Estadísticas</h3>
+                    </div>
+                    <div class="info-section">
+                        <p>Visualiza datos clave sobre ventas, productos y clientes.</p>
+                        <ul>
+                            <li>Gráficos de ventas mensuales y anuales.</li>
+                            <li>Productos más vendidos.</li>
+                            <li>Rendimiento del inventario.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- AJUSTES -->
+            <div id="section-ajustes" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Ajustes</h3>
+                    </div>
+                    <div class="info-section">
+                        <p>Configura las opciones de tu tienda:</p>
+                        <ul>
+                            <li>Modificar datos de la tienda.</li>
+                            <li>Cambiar contraseña de administrador.</li>
+                            <li>Personalizar notificaciones y preferencias.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -243,6 +548,9 @@
         <i class="fas fa-plus"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="scripts/administracion.js" defer></script>
 </body>
 </html>
