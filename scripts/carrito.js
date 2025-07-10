@@ -233,6 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
         pedidos.push(nuevoPedido);
         localStorage.setItem('pedidos', JSON.stringify(pedidos));
         
+        //Genera una boleta
+        generarYDescargarBoletaPDF(nuevoPedido);
+
+        
         // Disparar evento para actualizar estadísticas en admin
         window.dispatchEvent(new CustomEvent('pedidosActualizados', {
             detail: { pedidos: pedidos }
@@ -570,4 +574,97 @@ function mostrarNotificacionEliminado() {
             notificacion.remove();
         }, 300);
     }, 2000);
+}
+
+function generarYDescargarBoletaPDF(pedido) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const fechaFormateada = new Date(pedido.fecha).toLocaleString('es-PE', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    });
+
+    // Encabezado tipo logo en texto
+    doc.setFontSize(20);
+    doc.setTextColor(33, 37, 41); // Gris oscuro
+    doc.setFont('helvetica', 'bold');
+    doc.text('ShopData', 15, 20);
+
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Boleta de Venta', 15, 28);
+    doc.text(`Fecha: ${fechaFormateada}`, 150, 28, { align: 'right' });
+
+    doc.setLineWidth(0.5);
+    doc.line(10, 32, 200, 32); // línea separadora
+
+    // Datos del cliente
+    let y = 40;
+    doc.setFontSize(11);
+    doc.setTextColor(0);
+    doc.text('Datos del Cliente', 15, y);
+    y += 6;
+    const cliente = pedido.cliente;
+    doc.setFontSize(10);
+    doc.text(`Nombre: ${cliente.nombre}`, 15, y); y += 5;
+    doc.text(`DNI: ${cliente.dni}`, 15, y); y += 5;
+    doc.text(`Teléfono: ${cliente.telefono}`, 15, y); y += 5;
+    if (cliente.email) {
+        doc.text(`Email: ${cliente.email}`, 15, y); y += 5;
+    }
+    doc.text(`Dirección: ${pedido.direccion}`, 15, y); y += 5;
+    if (pedido.referencia) {
+        doc.text(`Referencia: ${pedido.referencia}`, 15, y); y += 8;
+    }
+
+    // Tabla de productos
+    const productos = pedido.productos.map((p, i) => [
+        i + 1,
+        p.nombre,
+        p.talla || '-',
+        p.color || '-',
+        p.cantidad,
+        `S/ ${p.precio.toFixed(2)}`,
+        `S/ ${(p.precio * p.cantidad).toFixed(2)}`
+    ]);
+
+    doc.autoTable({
+        startY: y,
+        head: [['#', 'Producto', 'Talla', 'Color', 'Cant.', 'Precio', 'Total']],
+        body: productos,
+        theme: 'striped',
+        styles: {
+            fontSize: 9,
+            cellPadding: 2,
+        },
+        headStyles: {
+            fillColor: [52, 152, 219], // azul elegante
+            textColor: [255, 255, 255],
+        },
+    });
+
+    let finalY = doc.lastAutoTable.finalY + 10;
+
+    // Totales
+    doc.setFontSize(11);
+    doc.setTextColor(0);
+    doc.text(`Subtotal: S/ ${pedido.subtotal.toFixed(2)}`, 150, finalY, { align: 'right' }); finalY += 6;
+    doc.text(`Envío: S/ ${pedido.envio.toFixed(2)}`, 150, finalY, { align: 'right' }); finalY += 6;
+    doc.setFontSize(12);
+    doc.setTextColor(0, 100, 0);
+    doc.text(`TOTAL: S/ ${pedido.total.toFixed(2)}`, 150, finalY, { align: 'right' }); finalY += 10;
+
+    // Estado del pedido
+    doc.setFontSize(10);
+    doc.setTextColor(80);
+    doc.text(`Estado del pedido: ${pedido.estado}`, 15, finalY); finalY += 8;
+
+    // Mensaje final
+    doc.setFontSize(10);
+    doc.setTextColor(60);
+    doc.text('Gracias por confiar en ShopData. ¡Te esperamos pronto!', 15, finalY);
+
+    const nombreArchivo = `Boleta_ShopData_${pedido.cliente.dni}_${Date.now()}.pdf`;
+    doc.save(nombreArchivo);
 }
